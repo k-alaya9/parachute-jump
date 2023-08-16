@@ -71,7 +71,7 @@ class parachute{
 }
 update(deltaTime) {
   if(this.mesh&&this.plane){
-    // Update the velocity based on the acceleration [v = v0*sin(teta) + (a*dt)]
+    // Update the velocity based on the acceleration [v = v0* + (a*dt)]
     this.vel.add(this.acc.clone().multiplyScalar(deltaTime));
     this.h=this.mesh.position.y;
     this.v=this.vel.length();
@@ -178,16 +178,16 @@ drag() {
         if(this.selected==='one')
         this.cd = 0.77;
       else this.cd=0.75;
-      if(this.selected!=='one')
-         this.A = Math.PI * Math.pow(this.r,2);
+      if(this.selected==='one')
+      this.A=8;
         else
-        this.A=8;
+        this.A = Math.PI * Math.pow(this.r,2);
+        
         const newC = 1 / 2 * this.A * pi * this.cd;
         const newDragMagnitude = newC * speed * speed;
         dragForce.setLength(newDragMagnitude);
         this.parachuteDrawn=true;
         scene.add(this.parachute);
-
       }
       this.applyForce(dragForce);
       this.fr=dragForce.length();
