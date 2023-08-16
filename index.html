@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>        
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Parachute Jump </title>
+	<style>
+        ::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #aaa;
+}
+  body{
+            overflow-y: auto;
+        }
+            canvas {
+          width: 100%;
+          height:100%; 
+
+        }
+        div{
+            display:block;
+        }
+        .container {
+        background-color: #f2f2f2;
+      width: 400px;
+      padding: 20px;
+      margin: 0 auto;
+      border-radius: 10px;
+      margin-top: 50px;
+    }
+		label {
+			display: block;
+			margin-bottom: 10px;
+		}
+        h1{
+            display: flex;
+         flex-direction: column;
+         align-items: center;
+        }
+        form {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+        }
+		input[type="text"], select {
+			padding: 10px;
+			border-radius: 10px;
+			border: 1px solid #ccc;
+			margin-bottom: 20px;
+			font-size: 16px;
+			width: 100%;
+			box-sizing: border-box;
+		}
+		input[type="submit"] {
+			background-color: #4CAF50;
+			color: white;
+			padding: 12px 20px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+			margin-top: 20px;
+		}
+		input[type="submit"]:hover {
+			background-color: #45a049;
+		}
+  .switch-container {
+  display: flex;
+  align-items: center;
+}
+
+.switch-container label {
+  margin-right: 10px;
+}
+
+.switch-container .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-right: 10px;
+}
+
+.switch-container .switch input {
+  display: none;
+}
+
+.switch-container .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.switch-container .slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+.switch-container input:checked + .slider {
+  background-color: #4CAF50;
+}
+
+.switch-container input:focus + .slider {
+  box-shadow: 0 0 1px #45a049;
+}
+
+.switch-container input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+/* HIDE RADIO */
+[type=radio] { 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* IMAGE STYLES */
+[type=radio] + img {
+  cursor: pointer;
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked + img {
+  outline: 2px solid #4CAF50;
+}
+
+	</style>
+  
+</head>
+<body>
+    <div class="container">
+	<h1>Parachute Jump </h1>
+	<form id="parachute-form" >
+		<label for="parachute-mass">Parachute Mass (kg):</label>
+		<input type="text" id="parachute-mass" name="parachute-mass"  required>
+
+		<label for="height"> Height (m):</label>
+		<input type="text" id="height" name="height" required>
+
+		<label for="person-height">Person Height (m):</label>
+		<input type="text" id="person-height" name="person-height" required>
+
+		<label for="plane-velocity">Plane Velocity (m/s):</label>
+		<input type="text" id="plane-velocity" name="plane-velocity" required>
+
+		<label for="jump-angle">Jump Angle (degrees):</label>
+		<input type="text" id="jump-angle" name="jump-angle" required>
+    <div class="switch-container">
+      <label for="toggle-switch">Open Parachute:</label>
+      <label class="switch">
+        <input type="checkbox" id="toggle-switch">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <label>Pick Parachute model:</label>
+    <label>
+      <input type="radio" name="test" value="one" checked>
+      <img src="https://images.free3d.com/imgd/s27566-parachute-23056.jpg" alt="Option 1">
+    </label>
+    <label>
+      <input type="radio" name="test" value="two">
+      <img src="data:image/jpeg;base64,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" alt="Option 2">
+    </label>
+		<input type="submit" value="simulate">
+	</form>
+</div>
+
+<canvas id="scene"></canvas>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
