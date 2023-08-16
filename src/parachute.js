@@ -29,7 +29,8 @@ class parachute{
         this.A = A;
         this.hp=A;
         this.cd=1;
-        this.vel =  initialVelocity.clone();
+        var iv=initialVelocity.length();
+        this.vel = new Vector3(iv*Math.cos(slopeAngle),iv*Math.sin(slopeAngle),0);
         this.acc = new Vector3(0,-9.8,0);
         this.elapsedTime = 0; // Initialize elapsed time to zero
         this.openParachute=open;
@@ -105,9 +106,9 @@ update(deltaTime) {
     
     this.elapsedTime +=deltaTime;
     // Check if 3 seconds have elapsed and set X-component of velocity to zero
-    if (this.elapsedTime >= 3 &&this.elapsedTime <=4) {
-      this.vel.setX(0);
-    }
+    // if (this.elapsedTime >= 3 &&this.elapsedTime <=4) {
+    //   this.vel.setX(0);
+    // }
     if(this.elapsedTime>=1){
       this.planeVel.setX(100);
     }
