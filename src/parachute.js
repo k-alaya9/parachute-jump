@@ -187,7 +187,7 @@ drag() {
         const newDragMagnitude = newC * speed * speed;
         dragForce.setLength(newDragMagnitude);
         this.parachuteDrawn=true;
-        scene.add(this.parachute);
+       this.drawParachute();
       }
       this.applyForce(dragForce);
       this.fr=dragForce.length();
@@ -203,6 +203,7 @@ drag() {
         model.scale.set(120, 120, 120);
         model.rotation.y=-Math.PI;
         this.parachute = model;
+        scene.add(this.parachute);
       });
     }
     else{
@@ -233,6 +234,7 @@ drag() {
           }).easing(TWEEN.Easing.Quadratic.Out)
           .start(); // start the animation
         this.parachute = object;
+        scene.add(this.parachute);
         console.log(this.parachute);
       });
     }
@@ -280,7 +282,6 @@ drawPerson(){
     object.scale.set(1,1,1);
      scene.add(object); 
      this.mesh=object;
-     this.drawParachute();
     }); 
   });
 }
